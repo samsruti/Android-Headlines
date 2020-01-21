@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/base"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#464646"
@@ -10,19 +11,42 @@
     tools:context=".ui.headlines.HeadlinesFragment">
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingEnd="16dp"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_slab_bold"
+            android:gravity="center"
+            android:letterSpacing="0.25"
+            android:text="Headlines"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:textSize="29sp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/baseitem"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:orientation="vertical">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="5dp">
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -34,12 +58,12 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="#252424"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintHorizontal_bias="0.0"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    card_view:layout_constraintVertical_bias="0.0"
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                 <View
@@ -47,12 +71,12 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="#70000000"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintHorizontal_bias="0.0"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    card_view:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/title"
@@ -65,9 +89,9 @@
                     android:text="Conor McGregor calls Trump a 'phenomenal' president on Twitter - Fox News"
                     android:textColor="#f2f2f2"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toTopOf="@+id/source"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    card_view:layout_constraintBottom_toTopOf="@+id/source"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/source"
@@ -78,8 +102,8 @@
                     android:text="Fox News"
                     android:textColor="#bababa"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/title" />
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintStart_toStartOf="@+id/title" />
 
                 <TextView
                     android:id="@+id/published_at"
@@ -89,10 +113,10 @@
                     android:text="2020-01-21"
                     android:textColor="#bababa"
                     android:textSize="12sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/source"
-                    app:layout_constraintEnd_toEndOf="@+id/title"
-                    app:layout_constraintHorizontal_bias="0.061"
-                    app:layout_constraintStart_toEndOf="@+id/source" />
+                    card_view:layout_constraintBaseline_toBaselineOf="@+id/source"
+                    card_view:layout_constraintEnd_toEndOf="@+id/title"
+                    card_view:layout_constraintHorizontal_bias="0.061"
+                    card_view:layout_constraintStart_toEndOf="@+id/source" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>

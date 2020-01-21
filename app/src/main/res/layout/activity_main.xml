@@ -6,30 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-android:paddingEnd="16dp"
-        android:background="#000000"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_slab_bold"
-            android:gravity="center"
-            android:letterSpacing="0.25"
-            android:text="Headlines"
-            android:textAllCaps="true"
-            android:textColor="#ffffff"
-            android:textSize="29sp"/>
-    </androidx.appcompat.widget.Toolbar>
-
     <fragment
         android:id="@+id/nav_host_main_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -39,7 +15,7 @@ android:paddingEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_main_graph"
         tools:layout="@layout/headlines_fragment" />
 

@@ -6,28 +6,40 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 
 import com.byjus.headlines.assignment.samsruti.R
+import com.byjus.headlines.assignment.samsruti.databinding.DetailsFragmentBinding
 
 class DetailsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = DetailsFragment()
-    }
+    private val detailsFragmentArgs: DetailsFragmentArgs by navArgs()
 
     private lateinit var viewModel: DetailsViewModel
+    private lateinit var binding: DetailsFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.details_fragment, container, false)
+
+        binding = DetailsFragmentBinding.inflate(inflater)
+        binding.setLifecycleOwner(this)
+
+        return binding.root
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(DetailsViewModel::class.java)
-        // TODO: Use the ViewModel
+        val selectedHeadline = detailsFragmentArgs.headlineDetails
+        val viewModelFactory = DetailsViewModel.Factory(selectedHeadline)
+        viewModel = ViewModelProviders.of(
+            this, viewModelFactory).get(DetailsViewModel::class.java)
+        binding.viewModel = viewModel
+
+
+
     }
 
 }

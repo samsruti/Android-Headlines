@@ -43,7 +43,7 @@ class HeadlinesListAdapter (val clickListener: CallBackClickListener):
         val currentNews = getItem(position)
         holder.itemView.setOnClickListener {
             clickListener.onClick(currentNews)
-            Toast.makeText(holder.itemView.context,currentNews.toString(),Toast.LENGTH_LONG).show()
+//            Toast.makeText(holder.itemView.context,currentNews.toString(),Toast.LENGTH_LONG).show()
 
         }
         holder.bind(currentNews)

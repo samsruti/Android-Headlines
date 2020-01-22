@@ -5,20 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.byjus.headlines.assignment.samsruti.domain.News
 import com.byjus.headlines.assignment.samsruti.domain.Source
+import com.byjus.headlines.assignment.samsruti.viewmodel.BaseViewModel
 import kotlinx.coroutines.*
 
-class HeadlinesViewModel : ViewModel() {
+class HeadlinesViewModel : BaseViewModel() {
 
-    private val viewModelJob = Job()
-    /**
-     * Coroutines in a Main Thread
-     */
-    protected val mainScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    /**
-     * Coroutines in a Pool of Thread
-     */
-    protected val ioScope = CoroutineScope(Dispatchers.Default + viewModelJob)
 
 
     private val _navigateToSelectedNews = MutableLiveData<News>()
@@ -44,17 +36,14 @@ class HeadlinesViewModel : ViewModel() {
         )
 
         val dummyNews = mutableListOf(news1,news1,news1,news1)
-//        updateUI(dummyNews)
+        updateUI(dummyNews)
+    }
+
+    private fun updateUI(dummyNews: List<News>) {
         mainScope.launch {
             _allNews.value = dummyNews
         }
     }
-
-//    private fun updateUI(dummyNews: List<News>) {
-//        mainScope.launch {
-//            _allNews.value = dummyNews
-//        }
-//    }
 
     fun displayNewsDetails(news: News) {
         _navigateToSelectedNews.value = news
@@ -64,11 +53,5 @@ class HeadlinesViewModel : ViewModel() {
         _navigateToSelectedNews.value = null
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
 
-        mainScope.coroutineContext.cancel()
-        ioScope.coroutineContext.cancel()
-    }
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -28,10 +29,11 @@ class HeadlinesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+//        context!!.theme.applyStyle(R.style.AppTheme_HeadlineListFragment,true)
         viewBinding = HeadlinesFragmentBinding.inflate(inflater)
 
-        viewBinding.setLifecycleOwner(this)
 
+        viewBinding.setLifecycleOwner(this)
 
         return viewBinding.root
     }

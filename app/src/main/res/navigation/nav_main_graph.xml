@@ -15,5 +15,9 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.byjus.headlines.assignment.samsruti.ui.details.DetailsFragment"
-        android:label="DetailsFragment" />
+        android:label="DetailsFragment" >
+        <argument
+            android:name="headline_details"
+            app:argType="com.byjus.headlines.assignment.samsruti.domain.News" />
+    </fragment>
 </navigation>

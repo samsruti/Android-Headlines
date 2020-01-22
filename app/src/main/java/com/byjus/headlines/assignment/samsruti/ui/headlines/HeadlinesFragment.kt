@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 
 import com.byjus.headlines.assignment.samsruti.R
@@ -43,6 +44,13 @@ class HeadlinesFragment : Fragment() {
 
         viewBinding.headlinesRecyclerview.adapter = HeadlinesListAdapter(HeadlinesListAdapter.CallBackClickListener{
             headlinesViewModel.displayNewsDetails(it)
+        })
+
+        headlinesViewModel.navigateToSelectedNews.observe(this, Observer {
+            if (it!=null){
+                this.findNavController().navigate(HeadlinesFragmentDirections.actionHeadlinesFragmentToDetailsFragment(it))
+                headlinesViewModel.displayNewsDetailsComplete()
+            }
         })
     }
 

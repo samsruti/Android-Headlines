@@ -30,13 +30,7 @@ class HeadlinesViewModel : ViewModel() {
     val navigateToSelectedNews: LiveData<News>
         get() = _navigateToSelectedNews
 
-    fun displayNewsDetails(news: News) {
-        _navigateToSelectedNews.value = news
-    }
 
-//    fun displayNewsDetailsComplete() {
-//        _navigateToSelectedNews.value = null
-//    }
 
     init {
         val news1 = News(author = "Amy Thompson",
@@ -62,8 +56,12 @@ class HeadlinesViewModel : ViewModel() {
 //        }
 //    }
 
-    fun displayPropertyDetails(selectedNews: News) {
-        _navigateToSelectedNews.value = selectedNews
+    fun displayNewsDetails(news: News) {
+        _navigateToSelectedNews.value = news
+    }
+
+    fun displayNewsDetailsComplete() {
+        _navigateToSelectedNews.value = null
     }
 
     override fun onCleared() {

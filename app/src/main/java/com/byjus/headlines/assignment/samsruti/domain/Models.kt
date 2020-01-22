@@ -17,6 +17,13 @@ data class News(
 
 @Parcelize
 data class Source(
-    val id: Int?,
-    val name: String
+    val id: String?,
+    val name: String?
 ) : Parcelable
+
+
+data class ApiResponse(
+    val articles: List<News>,
+    val status: String,
+    val totalResults: Int
+)

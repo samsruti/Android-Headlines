@@ -1,20 +1,47 @@
 package com.byjus.headlines.assignment.samsruti.repository
 
-import com.byjus.headlines.assignment.samsruti.domain.News
-import com.byjus.headlines.assignment.samsruti.network.NetworkResult
-import com.byjus.headlines.assignment.samsruti.network.NewsApi
+import androidx.lifecycle.LiveData
+import com.byjus.headlines.assignment.samsruti.database.DatabaseArticles
+import com.byjus.headlines.assignment.samsruti.database.HeadlinesAppDao
 import com.byjus.headlines.assignment.samsruti.network.NewsApiService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
-class HeadlineRepository (private val apiService: NewsApiService): BaseRepository(){
+class HeadlineRepository(
+    private val apiService: NewsApiService,
+    private val appDao: HeadlinesAppDao
+) : BaseRepository() {
 
-    suspend fun getAllHeadlines(): MutableList<News>?{
+    val allHeadlineArticles: LiveData<List<DatabaseArticles>> = appDao.getHeadlines()
 
-        val res = validApiCall(
-            call = {apiService.getTopHeadlines("us")},
-            errorMessage = "Error"
-        )
-        return res?.articles?.toMutableList()
+//    suspend fun getAllHeadlinesFromNetwork(): MutableList<News>?{
+//
+//        val res = validApiCall(
+//            call = {apiService.getTopHeadlines("us")},
+//            errorMessage = "Error"
+//        )
+//        return res?.articles?.toMutableList()
+//    }
+
+    fun fetchHeadlines() {
+        CoroutineScope(IO).launch {
+            val response = validApiCall(
+                call = { apiService.getTopHeadlines("us") },
+                errorMessage = "Error"
+            )
+            val listHeadlines = response?.articles
+            if (listHeadlines != null) {
+                addToCache(listHeadlines)
+            }
+        }
+    }
+
+    private fun addToCache(headlines: List<DatabaseArticles>) {
+        CoroutineScope(IO).launch {
+            for (eachArticle in headlines) {
+                appDao.insert(eachArticle)
+            }
+        }
     }
 }

@@ -1,6 +1,8 @@
 package com.byjus.headlines.assignment.samsruti.domain
 
 import android.os.Parcelable
+import com.byjus.headlines.assignment.samsruti.database.DatabaseArticles
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -23,7 +25,12 @@ data class Source(
 
 
 data class ApiResponse(
-    val articles: List<News>,
-    val status: String,
-    val totalResults: Int
+    @SerializedName("status")
+    val status: String = "",
+
+    @SerializedName("totalResults")
+    val results: Int = 0,
+
+    @SerializedName("articles")
+    val articles: List<DatabaseArticles> = emptyList()
 )

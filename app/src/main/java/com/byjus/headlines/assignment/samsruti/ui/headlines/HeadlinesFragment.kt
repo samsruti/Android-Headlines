@@ -1,52 +1,46 @@
 package com.byjus.headlines.assignment.samsruti.ui.headlines
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-
-import com.byjus.headlines.assignment.samsruti.R
 import com.byjus.headlines.assignment.samsruti.databinding.HeadlinesFragmentBinding
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HeadlinesFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = HeadlinesFragment()
-    }
+    private val headlinesViewModel by viewModel<HeadlinesViewModel>()
 
-    private lateinit var headlinesViewModel: HeadlinesViewModel
+    private var headlinesListAdapter: HeadlinesListAdapter? = null
+
     private lateinit var viewBinding: HeadlinesFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        context!!.theme.applyStyle(R.style.AppTheme_HeadlineListFragment,true)
+
         viewBinding = HeadlinesFragmentBinding.inflate(inflater)
 
 
         viewBinding.setLifecycleOwner(this)
+
 
         return viewBinding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        headlinesViewModel = ViewModelProviders.of(this).get(HeadlinesViewModel::class.java)
-        // TODO: Use the ViewModel
+
         viewBinding.viewModel = headlinesViewModel
 
         viewBinding.headlinesRecyclerview.adapter = HeadlinesListAdapter(HeadlinesListAdapter.CallBackClickListener{
             headlinesViewModel.displayNewsDetails(it)
         })
+
 
         headlinesViewModel.navigateToSelectedNews.observe(this, Observer {
             if (it!=null){

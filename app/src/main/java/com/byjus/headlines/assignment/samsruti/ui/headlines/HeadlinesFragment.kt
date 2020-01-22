@@ -37,7 +37,7 @@ class HeadlinesFragment : Fragment() {
 
         viewBinding.viewModel = headlinesViewModel
 
-        viewBinding.headlinesRecyclerview.adapter = HeadlinesListAdapter(HeadlinesListAdapter.CallBackClickListener{
+        viewBinding.headlinesRecyclerView.adapter = HeadlinesListAdapter(HeadlinesListAdapter.CallBackClickListener{
             headlinesViewModel.displayNewsDetails(it)
         })
 

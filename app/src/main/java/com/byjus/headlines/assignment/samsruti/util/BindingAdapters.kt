@@ -1,7 +1,10 @@
 package com.byjus.headlines.assignment.samsruti.util
 
+import android.widget.ImageView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.byjus.headlines.assignment.samsruti.database.DatabaseArticles
 import com.byjus.headlines.assignment.samsruti.domain.News
 import com.byjus.headlines.assignment.samsruti.ui.headlines.HeadlinesListAdapter
@@ -23,4 +26,15 @@ fun bindAllHeadlinesRecyclerView(recyclerView: RecyclerView, data: List<Database
         )
     }
     adapter.submitList(domainModel)
+}
+
+
+@BindingAdapter("imageUrl")
+fun bindImage(imgView: ImageView, imgUrl: String?) {
+    imgUrl?.let {
+        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+        Glide.with(imgView.context)
+            .load(imgUri)
+            .into(imgView)
+    }
 }

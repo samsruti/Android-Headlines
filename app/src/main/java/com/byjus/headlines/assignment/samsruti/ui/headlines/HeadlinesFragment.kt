@@ -10,6 +10,8 @@ import android.widget.LinearLayout
 import androidx.navigation.fragment.findNavController
 
 import com.byjus.headlines.assignment.samsruti.R
+import com.byjus.headlines.assignment.samsruti.databinding.HeadlinesFragmentBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class HeadlinesFragment : Fragment() {
@@ -18,23 +20,30 @@ class HeadlinesFragment : Fragment() {
         fun newInstance() = HeadlinesFragment()
     }
 
-    private lateinit var viewModel: HeadlinesViewModel
+    private lateinit var headlinesViewModel: HeadlinesViewModel
+    private lateinit var viewBinding: HeadlinesFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.headlines_fragment, container, false)
-        root.findViewById<LinearLayout>(R.id.baseitem).setOnClickListener {
-            this.findNavController().navigate(HeadlinesFragmentDirections.actionHeadlinesFragmentToDetailsFragment())
-        }
-        return root
+        viewBinding = HeadlinesFragmentBinding.inflate(inflater)
+
+        viewBinding.setLifecycleOwner(this)
+
+
+        return viewBinding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HeadlinesViewModel::class.java)
+        headlinesViewModel = ViewModelProviders.of(this).get(HeadlinesViewModel::class.java)
         // TODO: Use the ViewModel
+        viewBinding.viewModel = headlinesViewModel
+
+        viewBinding.headlinesRecyclerview.adapter = HeadlinesListAdapter(HeadlinesListAdapter.CallBackClickListener{
+            headlinesViewModel.displayNewsDetails(it)
+        })
     }
 
 }

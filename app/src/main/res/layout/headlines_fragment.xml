@@ -1,127 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/base"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#464646"
-    android:orientation="vertical"
-    tools:context=".ui.headlines.HeadlinesFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.byjus.headlines.assignment.samsruti.ui.headlines.HeadlinesViewModel" />
+    </data>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000000"
-        android:minHeight="?attr/actionBarSize"
-        android:paddingEnd="16dp"
-        card_view:layout_constraintEnd_toEndOf="parent"
-        card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="#464646"
+        android:orientation="vertical"
+        tools:context=".ui.headlines.HeadlinesFragment">
 
-        <TextView
-            android:id="@+id/textView"
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_slab_bold"
-            android:gravity="center"
-            android:letterSpacing="0.25"
-            android:text="Headlines"
-            android:textAllCaps="true"
-            android:textColor="#ffffff"
-            android:textSize="29sp" />
-    </androidx.appcompat.widget.Toolbar>
+            android:background="#000000"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingEnd="16dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:id="@+id/baseitem"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_margin="16dp"
-        android:orientation="vertical">
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="5dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/toolbar_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:gravity="center"
+                android:letterSpacing="0.25"
+                android:text="Headlines"
+                android:textAllCaps="true"
+                android:textColor="#ffffff"
+                android:textSize="29sp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/headlines_recyclerview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:padding="6dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:recyclerViewData = "@{viewModel.allNews}"
+            tools:itemCount="16"
+            tools:listitem="@layout/list_item_headlines" />
 
 
-                <ImageView
-                    android:id="@+id/imageBackground"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="#252424"
-                    card_view:layout_constraintBottom_toBottomOf="parent"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintHorizontal_bias="0.0"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent"
-                    card_view:layout_constraintVertical_bias="0.0"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="#70000000"
-                    card_view:layout_constraintBottom_toBottomOf="parent"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintHorizontal_bias="0.0"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent"
-                    card_view:layout_constraintVertical_bias="0.0" />
-
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="24dp"
-                    android:fontFamily="@font/roboto_slab"
-                    android:text="Conor McGregor calls Trump a 'phenomenal' president on Twitter - Fox News"
-                    android:textColor="#f2f2f2"
-                    android:textSize="20sp"
-                    card_view:layout_constraintBottom_toTopOf="@+id/source"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/source"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:fontFamily="@font/roboto_slab_bold"
-                    android:text="Fox News"
-                    android:textColor="#bababa"
-                    android:textSize="12sp"
-                    card_view:layout_constraintBottom_toBottomOf="parent"
-                    card_view:layout_constraintStart_toStartOf="@+id/title" />
-
-                <TextView
-                    android:id="@+id/published_at"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_slab_light"
-                    android:text="2020-01-21"
-                    android:textColor="#bababa"
-                    android:textSize="12sp"
-                    card_view:layout_constraintBaseline_toBaselineOf="@+id/source"
-                    card_view:layout_constraintEnd_toEndOf="@+id/title"
-                    card_view:layout_constraintHorizontal_bias="0.061"
-                    card_view:layout_constraintStart_toEndOf="@+id/source" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
-
-
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

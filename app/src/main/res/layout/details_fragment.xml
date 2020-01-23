@@ -65,7 +65,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/roboto_slab_light"
-            android:text="@{viewModel.selectedHeadline.publishedAt}"
+            app:formattingDate="@{viewModel.selectedHeadline.publishedAt}"
             android:textColor="#bababa"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/description"

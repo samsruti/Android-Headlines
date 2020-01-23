@@ -85,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_slab_light"
-                    android:text="@{news.publishedAt}"
+                    app:formattingDate = "@{news.publishedAt}"
                     android:textColor="#bababa"
                     android:textSize="12sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/source"

@@ -25,12 +25,6 @@ class HeadlinesViewModel(private val repository: HeadlineRepository) : BaseViewM
     init {
         fetchArticleHeadlines()
     }
-//
-//    private fun updateUI(dummyNews: List<News>) {
-//        mainScope.launch {
-//            _allNews.value = dummyNews
-//        }
-//    }
 
     fun displayNewsDetails(news: News) {
         _navigateToSelectedNews.value = news

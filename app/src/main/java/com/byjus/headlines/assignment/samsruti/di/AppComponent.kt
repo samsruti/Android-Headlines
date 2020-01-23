@@ -6,6 +6,8 @@ import com.byjus.headlines.assignment.samsruti.network.NewsApiService
 import com.byjus.headlines.assignment.samsruti.repository.HeadlineRepository
 import com.byjus.headlines.assignment.samsruti.ui.headlines.HeadlinesViewModel
 import com.google.gson.GsonBuilder
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -49,10 +51,14 @@ class AppComponent {
                 .addInterceptor(authenticatorApiService)
                 .build()
 
+            val moshi = Moshi.Builder()
+                .add(KotlinJsonAdapterFactory())
+                .build()
+
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(newsApiClient)
-                .addConverterFactory(MoshiConverterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .build()
         }
 

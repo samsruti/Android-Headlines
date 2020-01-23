@@ -29,7 +29,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:recyclerViewData="@{viewModel.headlinesLiveData}"
             tools:itemCount="16"
             tools:listitem="@layout/list_item_headlines" />
 

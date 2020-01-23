@@ -1,47 +1,44 @@
 package com.byjus.headlines.assignment.samsruti.repository
 
 import androidx.lifecycle.LiveData
-import com.byjus.headlines.assignment.samsruti.database.DatabaseArticles
+import androidx.lifecycle.Transformations
 import com.byjus.headlines.assignment.samsruti.database.HeadlinesAppDao
+import com.byjus.headlines.assignment.samsruti.database.asDomainModel
+import com.byjus.headlines.assignment.samsruti.domain.ApiResponse
+import com.byjus.headlines.assignment.samsruti.domain.Headline
+import com.byjus.headlines.assignment.samsruti.domain.asDatabaseModel
 import com.byjus.headlines.assignment.samsruti.network.NewsApiService
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HeadlineRepository(
     private val apiService: NewsApiService,
     private val appDao: HeadlinesAppDao
 ) : BaseRepository() {
 
-    val allHeadlineArticles: LiveData<List<DatabaseArticles>> = appDao.getHeadlines()
 
-//    suspend fun getAllHeadlinesFromNetwork(): MutableList<News>?{
-//
-//        val res = validApiCall(
-//            call = {apiService.getTopHeadlines("us")},
-//            errorMessage = "Error"
-//        )
-//        return res?.articles?.toMutableList()
-//    }
 
-    fun fetchHeadlines() {
-        CoroutineScope(IO).launch {
+    val allHeadlineArticles: LiveData<List<Headline>> =
+        Transformations.map(appDao.getHeadlines()) {
+            it.asDomainModel()
+        }
+
+
+    suspend fun refreshArticles(){
+        withContext(IO){
             val response = validApiCall(
                 call = { apiService.getTopHeadlines("us") },
                 errorMessage = "Error"
             )
-            val listHeadlines = response?.articles
-            if (listHeadlines != null) {
-                addToCache(listHeadlines)
+            if (response != null) {
+                addToCache(response)
             }
+
         }
     }
 
-    private fun addToCache(headlines: List<DatabaseArticles>) {
-        CoroutineScope(IO).launch {
-            for (eachArticle in headlines) {
-                appDao.insert(eachArticle)
-            }
-        }
+    private suspend fun addToCache(apiResponse: ApiResponse) {
+        appDao.insertAllHeadlines(*apiResponse.asDatabaseModel())
     }
+
 }

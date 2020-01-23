@@ -17,6 +17,6 @@
         android:label="" >
         <argument
             android:name="headline_details"
-            app:argType="com.byjus.headlines.assignment.samsruti.domain.News" />
+            app:argType="com.byjus.headlines.assignment.samsruti.domain.Headline" />
     </fragment>
 </navigation>

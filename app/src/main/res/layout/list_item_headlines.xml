@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="news"
-            type="com.byjus.headlines.assignment.samsruti.domain.News" />
+            name="headline"
+            type="com.byjus.headlines.assignment.samsruti.domain.Headline" />
     </data>
 
     <LinearLayout
@@ -31,7 +31,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="#252424"
-                    app:imageUrl = "@{news.urlToImage}"
+                    app:imageUrl = "@{headline.urlToImage}"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="24dp"
                     android:fontFamily="@font/roboto_slab"
-                    android:text="@{news.title}"
+                    android:text="@{headline.title}"
                     android:textColor="#f2f2f2"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@+id/source"
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:fontFamily="@font/roboto_slab_bold"
-                    android:text="@{news.source.name}"
+                    android:text="@{headline.source.name}"
                     android:textColor="#bababa"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_slab_light"
-                    app:formattingDate = "@{news.publishedAt}"
+                    android:text= "@{headline.publishedDate}"
                     android:textColor="#bababa"
                     android:textSize="12sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/source"

@@ -7,27 +7,27 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.byjus.headlines.assignment.samsruti.databinding.ListItemHeadlinesBinding
-import com.byjus.headlines.assignment.samsruti.domain.News
+import com.byjus.headlines.assignment.samsruti.domain.Headline
 
 class HeadlinesListAdapter (val clickListener: CallBackClickListener):
-    ListAdapter<News, HeadlinesListAdapter.HeadlinesViewHolder>(DiffCallback) {
+    ListAdapter<Headline, HeadlinesListAdapter.HeadlinesViewHolder>(DiffCallback) {
 
     class HeadlinesViewHolder(private var dataBinding: ListItemHeadlinesBinding)
         : RecyclerView.ViewHolder(dataBinding.root) {
 
-        fun bind(news: News){
-            dataBinding.news = news
+        fun bind(networkNews: Headline){
+            dataBinding.headline = networkNews
             dataBinding.executePendingBindings()
         }
 
     }
 
-    companion object DiffCallback: DiffUtil.ItemCallback<News>(){
-        override fun areItemsTheSame(oldItem: News, newItem: News): Boolean {
+    companion object DiffCallback: DiffUtil.ItemCallback<Headline>(){
+        override fun areItemsTheSame(oldItem: Headline, newItem: Headline): Boolean {
             return oldItem.url == newItem.url
         }
 
-        override fun areContentsTheSame(oldItem: News, newItem: News): Boolean {
+        override fun areContentsTheSame(oldItem: Headline, newItem: Headline): Boolean {
             return oldItem == newItem
         }
 
@@ -48,8 +48,8 @@ class HeadlinesListAdapter (val clickListener: CallBackClickListener):
         holder.bind(currentNews)
     }
 
-    class CallBackClickListener(val clickListener: (news: News) -> Unit) {
-        fun onClick(news: News) = clickListener(news)
+    class CallBackClickListener(val clickListener: (networkNews: Headline) -> Unit) {
+        fun onClick(networkNews: Headline) = clickListener(networkNews)
     }
 
 

@@ -17,6 +17,7 @@ buildscript {
         okhttp_interceptor_version = '4.0.1'
         version_room = "2.2.3"
         koin_version = "2.0.1"
+        version_moshi = "1.8.0"
     }
     repositories {
         google()

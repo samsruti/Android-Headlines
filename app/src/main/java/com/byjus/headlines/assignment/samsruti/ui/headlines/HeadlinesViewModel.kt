@@ -26,16 +26,18 @@ class HeadlinesViewModel(private val repository: HeadlineRepository) : BaseViewM
 
 
     init {
+        refresh()
+    }
+
+    fun refresh(){
         mainScope.launch {
-                try {
-                    repository.refreshArticles()
-                }catch (e: Exception){
-                    Timber.d("Error: $e")
-                    _status.value = ApiStatus.ERROR
-                }
+            try {
+                repository.refreshArticles()
+            }catch (e: Exception){
+                Timber.e("Error: $e")
+                _status.value = ApiStatus.ERROR
+            }
         }
-
-
     }
 
     fun displayNewsDetails(headline: Headline) {

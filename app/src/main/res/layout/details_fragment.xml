@@ -24,6 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
+            android:contentDescription="@string/headline_backround_image_desc"
             app:imageUrl="@{viewModel.selectedHeadline.urlToImage}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

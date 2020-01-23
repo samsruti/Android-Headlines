@@ -14,7 +14,7 @@ data class DatabaseArticles constructor(
     @PrimaryKey
     val url: String,
     val author: String?,
-    val content: String,
+    val content: String?,
     val description: String?,
     val publishedAt: String,
     val title: String,

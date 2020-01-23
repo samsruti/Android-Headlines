@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.byjus.headlines.assignment.samsruti.databinding.ListItemHeadlinesBinding
 import com.byjus.headlines.assignment.samsruti.domain.Headline
 
-class HeadlinesListAdapter (val clickListener: CallBackClickListener):
+class HeadlinesListAdapter (private val clickListener: CallBackClickListener):
     ListAdapter<Headline, HeadlinesListAdapter.HeadlinesViewHolder>(DiffCallback) {
 
     class HeadlinesViewHolder(private var dataBinding: ListItemHeadlinesBinding)

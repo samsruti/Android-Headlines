@@ -22,7 +22,7 @@ class DetailsFragment : Fragment() {
     ): View? {
 
         binding = DetailsFragmentBinding.inflate(inflater)
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         return binding.root
 

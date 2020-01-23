@@ -14,6 +14,7 @@ import com.byjus.headlines.assignment.samsruti.R
 import com.byjus.headlines.assignment.samsruti.databinding.HeadlinesFragmentBinding
 import com.byjus.headlines.assignment.samsruti.domain.ApiStatus
 import com.byjus.headlines.assignment.samsruti.domain.Headline
+import kotlinx.android.synthetic.main.headlines_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HeadlinesFragment : Fragment() {
@@ -32,7 +33,7 @@ class HeadlinesFragment : Fragment() {
         viewBinding = HeadlinesFragmentBinding.inflate(inflater)
 
 
-        viewBinding.setLifecycleOwner(this)
+        viewBinding.lifecycleOwner = this
 
 
         return viewBinding.root
@@ -43,17 +44,19 @@ class HeadlinesFragment : Fragment() {
 
         viewBinding.viewModel = headlinesViewModel
 
-        val viewModelAdapter= HeadlinesListAdapter(HeadlinesListAdapter.CallBackClickListener{
+        headlinesListAdapter = HeadlinesListAdapter(HeadlinesListAdapter.CallBackClickListener{
             headlinesViewModel.displayNewsDetails(it)
         })
 
         headlinesViewModel.headlinesLiveData.observe(viewLifecycleOwner, Observer<List<Headline>> { headlines ->
             headlines?.apply {
-                viewModelAdapter?.submitList(headlines)
+                headlinesListAdapter?.submitList(headlines)
             }
+            swipe_refresh.isRefreshing = false
         })
 
         headlinesViewModel.status.observe(this, Observer {
+//            Error Handling
             when(it){
                 ApiStatus.ERROR ->{
                     Toast.makeText(viewBinding.root.context,"Network Error!",Toast.LENGTH_SHORT).show()
@@ -61,13 +64,16 @@ class HeadlinesFragment : Fragment() {
             }
         })
 
+        viewBinding.swipeRefresh.setOnRefreshListener {
+            headlinesViewModel.refresh()
+        }
 
 
-        viewBinding.headlinesRecyclerView.adapter = viewModelAdapter
+        viewBinding.headlinesRecyclerView.adapter = headlinesListAdapter
 
         viewBinding.root.findViewById<RecyclerView>(R.id.headlines_recycler_view).apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = viewModelAdapter
+            adapter = headlinesListAdapter
         }
 
         headlinesViewModel.navigateToSelectedNetworkNews.observe(this, Observer {

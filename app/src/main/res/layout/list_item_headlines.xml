@@ -33,6 +33,7 @@
                     android:background="#252424"
                     app:imageUrl = "@{headline.urlToImage}"
                     android:scaleType="centerCrop"
+                    android:contentDescription="@string/headline_backround_image_desc"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"

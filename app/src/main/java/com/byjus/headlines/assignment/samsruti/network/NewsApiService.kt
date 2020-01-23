@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 
 interface NewsApiService {
-    //    Get all posts
+    // API For Top Headlines posts/articles
     @GET("/v2/top-headlines")
     suspend fun getTopHeadlines(
         @Query("country") country: String

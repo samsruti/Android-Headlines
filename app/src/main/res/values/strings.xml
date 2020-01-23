@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Headlines</string>
     <string name="headlines_app_title">HEADLINES</string>
+    <string name="headline_backround_image_desc">Headline Backround Image</string>
 </resources>

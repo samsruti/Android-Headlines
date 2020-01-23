@@ -1,10 +1,12 @@
 package com.byjus.headlines.assignment.samsruti.di
 
-import com.byjus.headlines.assignment.samsruti.BuildConfig
 import com.byjus.headlines.assignment.samsruti.database.HeadlinesAppDataBase
 import com.byjus.headlines.assignment.samsruti.network.NewsApiService
 import com.byjus.headlines.assignment.samsruti.repository.HeadlineRepository
 import com.byjus.headlines.assignment.samsruti.ui.headlines.HeadlinesViewModel
+import com.byjus.headlines.assignment.samsruti.util.API_KEY
+import com.byjus.headlines.assignment.samsruti.util.BASE_URL
+import com.byjus.headlines.assignment.samsruti.util.CONNECT_TIMEOUT
 import com.google.gson.GsonBuilder
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -17,11 +19,6 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
-
-
-const val CONNECT_TIMEOUT = 10L
-const val BASE_URL = "https://newsapi.org/"
-const val API_KEY = BuildConfig.NEWS_API_KEY
 
 
 class AppComponent {

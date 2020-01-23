@@ -23,11 +23,15 @@ class HeadlineRepository(
             it.asDomainModel()
         }
 
+    suspend fun fetchArticles() = validApiCall(
+        call = { apiService.getTopHeadlines("in") },
+        errorMessage = "Error"
+    )
 
     suspend fun refreshArticles(){
         withContext(IO){
             val response = validApiCall(
-                call = { apiService.getTopHeadlines("us") },
+                call = { apiService.getTopHeadlines("in") },
                 errorMessage = "Error"
             )
             if (response != null) {

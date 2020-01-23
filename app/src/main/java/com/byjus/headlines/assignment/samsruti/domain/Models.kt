@@ -12,7 +12,7 @@ enum class ApiStatus {LOADING, DONE, ERROR, UNSUCCESSFUL, UNKNOWN_HOST}
 @Parcelize
 data class Headline(
     val author: String?,
-    val content: String,
+    val content: String?,
     val description: String?,
     val publishedAt: String,
     val source: Source,
@@ -27,7 +27,7 @@ data class Headline(
 @JsonClass(generateAdapter = true)
 data class NetworkNews(
     val author: String?,
-    val content: String,
+    val content: String?,
     val description: String?,
     val publishedAt: String,
     val source: Source,
@@ -40,7 +40,7 @@ data class NetworkNews(
 data class Source(
 
     val id: String?,
-    val name: String
+    val name: String?
 ) : Parcelable
 
 

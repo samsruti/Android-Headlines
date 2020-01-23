@@ -18,6 +18,14 @@ buildscript {
         version_room = "2.2.3"
         koin_version = "2.0.1"
         version_moshi = "1.8.0"
+
+        version_junit = '4.12'
+        arch_test_version = '2.0.1'
+        mockito_version = '3.2.4'
+        mock_web_server = '4.0.1'
+        testRunner = '1.2.0'
+        espresso = '3.2.0'
+        rxJava_version = '2.2.10'
     }
     repositories {
         google()

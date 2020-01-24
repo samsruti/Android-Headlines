@@ -4,4 +4,13 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="placeholder">#000000</color>
+    <color name="transparent_white">#00FFFFFF</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="headlines_list_background">#464646</color>
+    <color name="title_color">#f2f2f2</color>
+    <color name="source_name">#bababa</color>
+    <color name="publish_date">#bababa</color>
+    <color name="content_color">#bababa</color>
 </resources>

@@ -8,6 +8,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.byjus.headlines.assignment.samsruti.R
+
 //
 //@BindingAdapter("recyclerViewData")
 //fun bindAllHeadlinesRecyclerView(recyclerView: RecyclerView, data: List<DatabaseArticles>?) {

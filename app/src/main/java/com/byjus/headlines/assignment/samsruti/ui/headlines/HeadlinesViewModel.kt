@@ -20,6 +20,7 @@ class HeadlinesViewModel(private val repository: HeadlineRepository) : BaseViewM
         get() = _navigateToSelectedNews
 
 
+
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbar_padding_top">32dp</dimen>
+    <dimen name="toolbar_padding_bottom">12dp</dimen>
+    <dimen name="toolbar_title_text_isze">29sp</dimen>
+</resources>

@@ -30,11 +30,10 @@ class HeadlinesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewBinding = HeadlinesFragmentBinding.inflate(inflater)
+        viewBinding = HeadlinesFragmentBinding.inflate(inflater,container,false)
 
 
         viewBinding.lifecycleOwner = this
-
 
         return viewBinding.root
     }

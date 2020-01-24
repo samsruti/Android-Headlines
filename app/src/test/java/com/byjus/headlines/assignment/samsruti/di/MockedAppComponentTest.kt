@@ -4,9 +4,11 @@ package com.byjus.headlines.assignment.samsruti.di
 import com.byjus.headlines.assignment.samsruti.database.HeadlinesAppDao
 import com.byjus.headlines.assignment.samsruti.network.NewsApiService
 import com.byjus.headlines.assignment.samsruti.repository.HeadlineRepository
+import com.byjus.headlines.assignment.samsruti.ui.headlines.HeadlinesViewModel
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -39,6 +41,10 @@ class MockedAppComponentTest{
 
     fun getRepositoryComponent(dao: HeadlinesAppDao) = module {
         factory { HeadlineRepository(get(), dao) }
+    }
+
+    val viewModelModule = module {
+        viewModel { HeadlinesViewModel(get()) }
     }
 }
 
